@@ -1,1 +1,4 @@
-export type HealthResponse = {status: "ok"}
+export type HealthResponse = {
+    status: "ok";
+    database: "ok" | "unreachable";    
+}
