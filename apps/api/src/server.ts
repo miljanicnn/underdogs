@@ -3,7 +3,7 @@ import type { HealthResponse } from "@underdogs/shared";
 
 const app = Fastify({ logger: true });
 
-app.get("/health", async (): Promise<HealthResponse> => {
+app.get("/health", (): HealthResponse => {
   return { status: "ok" };
 });
 
