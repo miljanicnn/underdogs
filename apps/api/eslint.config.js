@@ -11,7 +11,9 @@ export default defineConfig([
     languageOptions: {
       globals: globals.node,
       parserOptions: {
-        projectService: true,
+        projectService: {
+            allowDefaultProject: ["drizzle.config.ts"],
+        },
       },
     },
   },
