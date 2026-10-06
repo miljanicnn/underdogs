@@ -50,8 +50,9 @@ Other scripts, run from the root: `pnpm build` and `pnpm lint`.
 ## Roadmap
 
 - [x] Monorepo with API and web app skeleton
-- [ ] Database and data model
-- [ ] Import player data and scores from the FPL API
+- [x] Database and data model
+- [x] Import gameweek and player data from the FPL API
+- [ ] Import scores from the FPL API
 - [ ] Sign up and log in
 - [ ] Leagues: create and join with a code
 - [ ] Pick your 5+1 team each gameweek
