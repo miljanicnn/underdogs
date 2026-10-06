@@ -8,6 +8,13 @@
       "when": 1791210873110,
       "tag": "0000_create_players",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1791288371095,
+      "tag": "0001_create_gameweeks",
+      "breakpoints": true
     }
   ]
 }
