@@ -1,5 +1,6 @@
 const FPL_API_URL = "https://fantasy.premierleague.com/api"
 
+// FPL element corresponds to a player
 export type FplElement = {
     id: number;
     web_name: string;
@@ -12,6 +13,7 @@ export type FplElement = {
 
 export type FplBootstrapStatic = {
     elements: FplElement[];
+    events: FplEvent[];
 }
 
 export async function fetchBootstrapStatic(): Promise<FplBootstrapStatic> {
@@ -22,4 +24,13 @@ export async function fetchBootstrapStatic(): Promise<FplBootstrapStatic> {
     }
 
     return (await response.json()) as FplBootstrapStatic
+}
+
+// FPL event corresponds to a gameweek
+export type FplEvent = {
+    id: number;
+    name: string;
+    deadline_time: string;
+    finished: boolean;
+    data_checked: boolean;
 }

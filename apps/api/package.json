@@ -10,7 +10,7 @@
     "lint": "eslint",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
-    "import:players": "tsx --env-file-if-exists=.env src/scripts/import-players.ts"
+    "import:fpl": "tsx --env-file-if-exists=.env src/scripts/import-fpl.ts"
   },
   "dependencies": {
     "@underdogs/shared": "workspace:*",
