@@ -12,7 +12,7 @@ export default defineConfig([
       globals: globals.node,
       parserOptions: {
         projectService: {
-            allowDefaultProject: ["drizzle.config.ts"],
+          allowDefaultProject: ["drizzle.config.ts"],
         },
       },
     },
