@@ -8,10 +8,10 @@ const app = Fastify({ logger: true });
 app.get("/health", async (): Promise<HealthResponse> => {
   try {
     await db.execute(sql`select 1`);
-    return {status: "ok", database: "ok"}
+    return { status: "ok", database: "ok" };
   } catch (err) {
-    app.log.error(err, "database health check failed")
-    return {status: "ok", database: "unreachable"}
+    app.log.error(err, "database health check failed");
+    return { status: "ok", database: "unreachable" };
   }
 });
 

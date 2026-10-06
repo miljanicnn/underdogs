@@ -16,14 +16,14 @@ Points come straight from official FPL scores. Finding the hidden gems is the ga
 
 ## Tech stack
 
-| Area | Choice |
-|---|---|
-| Language | TypeScript |
-| Frontend | React + Vite |
-| Backend | Fastify |
+| Area               | Choice                      |
+| ------------------ | --------------------------- |
+| Language           | TypeScript                  |
+| Frontend           | React + Vite                |
+| Backend            | Fastify                     |
 | Database (planned) | PostgreSQL with Drizzle ORM |
-| Auth (planned) | Better Auth |
-| Repo | pnpm workspaces monorepo |
+| Auth (planned)     | Better Auth                 |
+| Repo               | pnpm workspaces monorepo    |
 
 ## Project structure
 
