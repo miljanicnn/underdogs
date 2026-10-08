@@ -12,7 +12,7 @@ export function startScheduledJobs(log: FastifyBaseLogger): void {
         const result = await importFplData();
         log.info(result, "FPL import finished");
       } catch (err) {
-        log.info(err, "FPL import failed");
+        log.error(err, "FPL import failed");
       }
     },
     { name: "fpl-import", noOverlap: true },
