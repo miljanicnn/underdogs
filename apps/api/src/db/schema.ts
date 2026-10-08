@@ -34,12 +34,12 @@ export const gameweeks = pgTable("gameweeks", {
   deadlineTime: timestamp({ withTimezone: true }).notNull(),
   finished: boolean().notNull(),
   dataChecked: boolean().notNull(),
-  statsImpotedAt: timestamp({ withTimezone: true }),
+  statsImportedAt: timestamp({ withTimezone: true }),
   updatedAt: timestamp({ withTimezone: true }).notNull().defaultNow(),
 });
 
 export const playerGameweekStats = pgTable(
-  "player_gameweeks_stats",
+  "player_gameweek_stats",
   {
     playerId: integer()
       .notNull()
