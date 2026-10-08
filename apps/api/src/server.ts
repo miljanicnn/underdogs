@@ -2,6 +2,7 @@ import Fastify from "fastify";
 import type { HealthResponse } from "@underdogs/shared";
 import { db } from "./db/index.js";
 import { sql } from "drizzle-orm";
+import { startScheduledJobs } from "./jobs/schedule.js";
 
 const app = Fastify({ logger: true });
 
@@ -19,6 +20,7 @@ const port = Number(process.env.PORT ?? 3000);
 
 try {
   await app.listen({ port, host: "0.0.0.0" });
+  startScheduledJobs(app.log);
 } catch (err) {
   app.log.error(err);
   process.exit(1);
