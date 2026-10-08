@@ -1,0 +1,234 @@
+{
+  "id": "4aa516f4-2de3-475f-9343-368ce72e95b2",
+  "prevId": "90cd1e1e-6436-4e71-83ef-a805b64bd00f",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.gameweeks": {
+      "name": "gameweeks",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "deadline_time": {
+          "name": "deadline_time",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "finished": {
+          "name": "finished",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "data_checked": {
+          "name": "data_checked",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "stats_impoted_at": {
+          "name": "stats_impoted_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.player_gameweeks_stats": {
+      "name": "player_gameweeks_stats",
+      "schema": "",
+      "columns": {
+        "player_id": {
+          "name": "player_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "gameweek_id": {
+          "name": "gameweek_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "total_points": {
+          "name": "total_points",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "minutes": {
+          "name": "minutes",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "stats": {
+          "name": "stats",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "player_gameweeks_stats_player_id_players_id_fk": {
+          "name": "player_gameweeks_stats_player_id_players_id_fk",
+          "tableFrom": "player_gameweeks_stats",
+          "tableTo": "players",
+          "columnsFrom": [
+            "player_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "player_gameweeks_stats_gameweek_id_gameweeks_id_fk": {
+          "name": "player_gameweeks_stats_gameweek_id_gameweeks_id_fk",
+          "tableFrom": "player_gameweeks_stats",
+          "tableTo": "gameweeks",
+          "columnsFrom": [
+            "gameweek_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "player_gameweeks_stats_player_id_gameweek_id_pk": {
+          "name": "player_gameweeks_stats_player_id_gameweek_id_pk",
+          "columns": [
+            "player_id",
+            "gameweek_id"
+          ]
+        }
+      },
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.players": {
+      "name": "players",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "web_name": {
+          "name": "web_name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "first_name": {
+          "name": "first_name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "second_name": {
+          "name": "second_name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "team_id": {
+          "name": "team_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "position": {
+          "name": "position",
+          "type": "position",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "selected_by_percent": {
+          "name": "selected_by_percent",
+          "type": "numeric(4, 1)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    }
+  },
+  "enums": {
+    "public.position": {
+      "name": "position",
+      "schema": "public",
+      "values": [
+        "GKP",
+        "DEF",
+        "MID",
+        "FWD"
+      ]
+    }
+  },
+  "schemas": {},
+  "sequences": {},
+  "roles": {},
+  "policies": {},
+  "views": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}
