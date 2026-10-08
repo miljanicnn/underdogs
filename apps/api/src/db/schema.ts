@@ -6,7 +6,10 @@ import {
   text,
   timestamp,
   boolean,
+  jsonb,
+  primaryKey,
 } from "drizzle-orm/pg-core";
+import type { FplLiveStats } from "../fpl/client.js";
 
 export const positionEnum = pgEnum("position", ["GKP", "DEF", "MID", "FWD"]);
 
@@ -31,5 +34,23 @@ export const gameweeks = pgTable("gameweeks", {
   deadlineTime: timestamp({ withTimezone: true }).notNull(),
   finished: boolean().notNull(),
   dataChecked: boolean().notNull(),
+  statsImpotedAt: timestamp({ withTimezone: true }),
   updatedAt: timestamp({ withTimezone: true }).notNull().defaultNow(),
 });
+
+export const playerGameweekStats = pgTable(
+  "player_gameweeks_stats",
+  {
+    playerId: integer()
+      .notNull()
+      .references(() => players.id),
+    gameweekId: integer()
+      .notNull()
+      .references(() => gameweeks.id),
+    totalPoints: integer().notNull(),
+    minutes: integer().notNull(),
+    stats: jsonb().$type<FplLiveStats>().notNull(),
+    updatedAt: timestamp({ withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [primaryKey({ columns: [table.playerId, table.gameweekId] })],
+);

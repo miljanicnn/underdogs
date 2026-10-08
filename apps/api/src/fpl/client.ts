@@ -1,5 +1,10 @@
 const FPL_API_URL = "https://fantasy.premierleague.com/api";
 
+export type FplBootstrapStatic = {
+  elements: FplElement[];
+  events: FplEvent[];
+};
+
 // FPL element corresponds to a player
 export type FplElement = {
   id: number;
@@ -20,9 +25,20 @@ export type FplEvent = {
   data_checked: boolean;
 };
 
-export type FplBootstrapStatic = {
-  elements: FplElement[];
-  events: FplEvent[];
+// A player's stats for one gameweek.
+export type FplEventLive = {
+  elements: FplLiveElement[];
+};
+
+export type FplLiveElement = {
+  id: number;
+  stats: FplLiveStats;
+};
+
+export type FplLiveStats = {
+  total_points: number;
+  minutes: number;
+  [stat: string]: unknown;
 };
 
 async function fetchFpl<T>(path: string): Promise<T> {
@@ -39,4 +55,8 @@ async function fetchFpl<T>(path: string): Promise<T> {
 
 export function fetchBootstrapStatic(): Promise<FplBootstrapStatic> {
   return fetchFpl<FplBootstrapStatic>("/bootstrap-static");
+}
+
+export function fetchEventLive(gameweekId: number): Promise<FplEventLive> {
+  return fetchFpl<FplEventLive>(`/event/${gameweekId}/live/`);
 }

@@ -15,6 +15,13 @@
       "when": 1791288371095,
       "tag": "0001_create_gameweeks",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1791467039459,
+      "tag": "0002_add_player_gameweek_stats",
+      "breakpoints": true
     }
   ]
 }
