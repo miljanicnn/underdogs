@@ -11,23 +11,6 @@ export type FplElement = {
   selected_by_percent: string;
 };
 
-export type FplBootstrapStatic = {
-  elements: FplElement[];
-  events: FplEvent[];
-};
-
-export async function fetchBootstrapStatic(): Promise<FplBootstrapStatic> {
-  const response = await fetch(`${FPL_API_URL}/bootstrap-static/`);
-
-  if (!response.ok) {
-    throw new Error(
-      `FPL request failed: ${response.status} ${response.statusText}`,
-    );
-  }
-
-  return (await response.json()) as FplBootstrapStatic;
-}
-
 // FPL event corresponds to a gameweek
 export type FplEvent = {
   id: number;
@@ -36,3 +19,24 @@ export type FplEvent = {
   finished: boolean;
   data_checked: boolean;
 };
+
+export type FplBootstrapStatic = {
+  elements: FplElement[];
+  events: FplEvent[];
+};
+
+async function fetchFpl<T>(path: string): Promise<T> {
+  const response = await fetch(`${FPL_API_URL}${path}`);
+
+  if (!response.ok) {
+    throw new Error(
+      `FPL request failed: ${response.status} ${response.statusText}`,
+    );
+  }
+
+  return (await response.json()) as T;
+}
+
+export function fetchBootstrapStatic(): Promise<FplBootstrapStatic> {
+  return fetchFpl<FplBootstrapStatic>("/bootstrap-static");
+}
